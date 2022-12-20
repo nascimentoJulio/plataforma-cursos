@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+  courses-network:
+    driver: 'bridge'
+
+services:
+  keycloak:
+    image: keycloak/keycloak
+    environment:
+     KEYCLOAK_ADMIN: admin
+     KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - 8080:8080
+    volumes:
+      - ./keycloak/data
+    networks:
+      - courses-network
+    command: start-dev
